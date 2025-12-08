@@ -1,0 +1,27 @@
+################################################################################
+# 自动生成的文件。不要编辑！
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
+################################################################################
+
+# 将这些工具调用的输入和输出添加到构建变量 
+C_SRCS += \
+../Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.c 
+
+OBJS += \
+./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.o 
+
+C_DEPS += \
+./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.d 
+
+
+# 每个子目录必须为构建它所贡献的源提供规则
+Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/%.o Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/%.su Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/%.cyclo: ../Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/%.c Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F412Cx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/BSP/inc -I../Middlewares/LVGL/GUI -I../Middlewares/LVGL/GUI/lvgl -I../Middlewares/LVGL/GUI/src -I../Middlewares/LVGL/GUI/lvgl/examples/porting -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I../Drivers/BSP/GH3220/Kernel_code/driver/inc -I../Drivers/BSP/GH3220/Kernel_code/kernel/inc -I../Drivers/BSP/GH3220/Kernel_code/module/gh_agc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Drivers/BSP/GH3220/Kernel_code/module/gh_common" -I../Drivers/BSP/GH3220/Kernel_code/module/gh_ecg -I../Drivers/BSP/GH3220/Kernel_code/module/gh_other -I../Drivers/BSP/GH3220/Kernel_code/module/gh_protocol -I../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_application/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/hr_exc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/spo2_pre_exc -I../Core/USER/APP/inc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+
+clean: clean-Drivers-2f-BSP-2f-GH3220-2f-Kernel_code-2f-module-2f-gh_ecg
+
+clean-Drivers-2f-BSP-2f-GH3220-2f-Kernel_code-2f-module-2f-gh_ecg:
+	-$(RM) ./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.cyclo ./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.d ./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.o ./Drivers/BSP/GH3220/Kernel_code/module/gh_ecg/gh_ecg.su
+
+.PHONY: clean-Drivers-2f-BSP-2f-GH3220-2f-Kernel_code-2f-module-2f-gh_ecg
+
