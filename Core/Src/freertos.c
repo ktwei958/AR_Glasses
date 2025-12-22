@@ -32,9 +32,6 @@
 #include "gh_demo.h"
 #include "testPage.h"
 
-
-#include "pngle.h"
-#include "png_lvgl.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -164,17 +161,51 @@ void MX_FREERTOS_Init(void) {
  * @retval None
  */
 /* USER CODE END Header_StartTaskMain */
+//void StartTaskMain(void *argument)
+//
+//{
+//  /* USER CODE BEGIN StartTaskMain */
+//	lv_init();
+//	lv_port_init();
+//	lv_obj_t * img1 = lv_img_create(lv_scr_act());
+//	 const char *img_path = "S:/img/test8.bin"; //test5 test4 test8 ok
+//
+//	lv_img_set_src(img1,img_path);
+//	lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
+//
+//	/* Infinite loop */
+//	for (;;) {
+//
+//		if (xSemaphoreTake(gps_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+//
+//			if(gps_data_change == 1){
+//				gps_data_change = 0;
+//				update_gps_display(lv_scr_act(), &GPS_data_share);
+//			}
+//			// 释放互斥锁（必须执行，否则其他任务会阻塞）
+//			xSemaphoreGive(gps_mutex);
+//		}
+//
+//		lv_timer_handler();
+//		vTaskDelay(pdMS_TO_TICKS(5));
+//	}
+//  /* USER CODE END StartTaskMain */
+//}
+
+
+//#include "../../Cpp/_Template/TemplateView.h"
+/* 测试lvgl界面设计显示 */
 void StartTaskMain(void *argument)
 
 {
   /* USER CODE BEGIN StartTaskMain */
 	lv_init();
 	lv_port_init();
-	lv_obj_t * img1 = lv_img_create(lv_scr_act());
-	 const char *img_path = "S:/img/test8.bin"; //test5 test4 test8 ok
 
-	lv_img_set_src(img1,img_path);
-	lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
+//	lv_obj_t* root = lv_obj_create(lv_scr_act());
+//	SetChart(root);
+
+	CppMain();
 
 	/* Infinite loop */
 	for (;;) {
@@ -192,10 +223,12 @@ void StartTaskMain(void *argument)
 		lv_timer_handler();
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}
-  /* USER CODE END StartTaskMain */
 }
 
+//#include "pngle.h"
+//#include "png_lvgl.h"
 
+/* 测试PNGLE解码库 */
 //void StartTaskMain(void *argument)
 //{
 //  /* USER CODE BEGIN StartTaskMain */

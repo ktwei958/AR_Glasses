@@ -1,6 +1,6 @@
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/core/lv_disp.h:162:26:lv_scr_act	8	static
-../Core/Src/freertos.c:102:6:vApplicationTickHook	8	static
-../Core/Src/freertos.c:119:6:MX_FREERTOS_Init	8	static
-../Core/Src/freertos.c:167:6:StartTaskMain	24	static
-../Core/Src/freertos.c:233:6:StartGPSTask	24	static
-../Core/Src/freertos.c:266:6:StartTaskHR	16	static
+../Core/Src/freertos.c:99:6:vApplicationTickHook	8	static
+../Core/Src/freertos.c:116:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:198:6:StartTaskMain	16	static
+../Core/Src/freertos.c:266:6:StartGPSTask	24	static
+../Core/Src/freertos.c:299:6:StartTaskHR	16	static

@@ -1,9 +1,9 @@
 ################################################################################
-# 自动生成的文件。不要编辑！
+# Automatically-generated file. Do not edit!
 # Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
-# 将这些工具调用的输入和输出添加到构建变量 
+# Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
@@ -27,30 +27,6 @@ C_SRCS += \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
 ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c 
-
-OBJS += \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_mmc.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o \
-./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.o 
 
 C_DEPS += \
 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.d \
@@ -76,10 +52,34 @@ C_DEPS += \
 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.d \
 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.d 
 
+OBJS += \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_mmc.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o \
+./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.o 
 
-# 每个子目录必须为构建它所贡献的源提供规则
+
+# Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32F4xx_HAL_Driver/Src/%.o Drivers/STM32F4xx_HAL_Driver/Src/%.su Drivers/STM32F4xx_HAL_Driver/Src/%.cyclo: ../Drivers/STM32F4xx_HAL_Driver/Src/%.c Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F412Cx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/BSP/inc -I../Middlewares/LVGL/GUI -I../Middlewares/LVGL/GUI/lvgl -I../Middlewares/LVGL/GUI/src -I../Middlewares/LVGL/GUI/lvgl/examples/porting -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I../Drivers/BSP/GH3220/Kernel_code/driver/inc -I../Drivers/BSP/GH3220/Kernel_code/kernel/inc -I../Drivers/BSP/GH3220/Kernel_code/module/gh_agc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Drivers/BSP/GH3220/Kernel_code/module/gh_common" -I../Drivers/BSP/GH3220/Kernel_code/module/gh_ecg -I../Drivers/BSP/GH3220/Kernel_code/module/gh_other -I../Drivers/BSP/GH3220/Kernel_code/module/gh_protocol -I../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_application/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/hr_exc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/spo2_pre_exc -I../Core/USER/APP/inc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m4 -std=c17 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F412Cx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Drivers/BSP/inc -I../Middlewares/LVGL/GUI -I../Middlewares/LVGL/GUI/lvgl -I../Middlewares/LVGL/GUI/src -I../Middlewares/LVGL/GUI/lvgl/examples/porting -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I../Drivers/BSP/GH3220/Kernel_code/driver/inc -I../Drivers/BSP/GH3220/Kernel_code/kernel/inc -I../Drivers/BSP/GH3220/Kernel_code/module/gh_agc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Drivers/BSP/GH3220/Kernel_code/module/gh_common" -I../Drivers/BSP/GH3220/Kernel_code/module/gh_ecg -I../Drivers/BSP/GH3220/Kernel_code/module/gh_other -I../Drivers/BSP/GH3220/Kernel_code/module/gh_protocol -I../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_application/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/hr_exc -I../Drivers/BSP/GH3220/Algo_code/goodix_algo_call/inc/spo2_pre_exc -I../Core/USER/APP/inc -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle" -I"D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/Pages" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
 
 clean: clean-Drivers-2f-STM32F4xx_HAL_Driver-2f-Src
 

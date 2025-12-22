@@ -66,6 +66,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+void CppMain();
 #define LOG    1 //如果LOG = 1则启用LOG调试，使用串口2用printf输出
 /* USER CODE END EFP */
 

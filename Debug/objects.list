@@ -15,6 +15,7 @@
 "./Core/Src/tim.o"
 "./Core/Src/usart.o"
 "./Core/Startup/startup_stm32f412cgux.o"
+"./Core/USER/APP/src/TemplateView.o"
 "./Core/USER/APP/src/testPage.o"
 "./Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src/gh3x2x_demo_accppg_sync.o"
 "./Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src/gh3x2x_demo_algo_call.o"

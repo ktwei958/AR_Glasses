@@ -272,9 +272,7 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Drivers/BSP/GH3220/Kernel_code/kernel/inc/gh_demo.h \
  ../Drivers/BSP/GH3220/Kernel_code/driver/inc/gh_drv.h \
  ../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt/gh_multi_sen_pro.h \
- ../Core/USER/APP/inc/testPage.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle/pngle.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle/png_lvgl.h
+ ../Core/USER/APP/inc/testPage.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -557,5 +555,3 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Drivers/BSP/GH3220/Kernel_code/driver/inc/gh_drv.h:
 ../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt/gh_multi_sen_pro.h:
 ../Core/USER/APP/inc/testPage.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle/pngle.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/pngle/png_lvgl.h:

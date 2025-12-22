@@ -44,6 +44,17 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+#include "main.h"
+#include "lvgl/lvgl.h"
+#include "TemplateView.h"
+
+using namespace Page;
+void CppMain()
+{
+	lv_obj_t* root = lv_obj_create(lv_scr_act());
+	Page::TemplateView::SetChart(root);
+}
+
 
 /* USER CODE END PM */
 

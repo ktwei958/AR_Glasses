@@ -1,5 +1,5 @@
 ################################################################################
-# 自动生成的文件。不要编辑！
+# Automatically-generated file. Do not edit!
 # Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
@@ -7,7 +7,7 @@
 
 RM := rm -rf
 
-# 此处定义了参与生成的所有源
+# All of the sources participating in the build are defined here
 -include sources.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
@@ -82,14 +82,38 @@ RM := rm -rf
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(CC_DEPS)),)
+-include $(CC_DEPS)
+endif
+ifneq ($(strip $(C++_DEPS)),)
+-include $(C++_DEPS)
+endif
+ifneq ($(strip $(CCM_DEPS)),)
+-include $(CCM_DEPS)
+endif
+ifneq ($(strip $(C_UPPER_DEPS)),)
+-include $(C_UPPER_DEPS)
+endif
+ifneq ($(strip $(CXX_DEPS)),)
+-include $(CXX_DEPS)
+endif
 ifneq ($(strip $(S_DEPS)),)
 -include $(S_DEPS)
 endif
 ifneq ($(strip $(S_UPPER_DEPS)),)
 -include $(S_UPPER_DEPS)
 endif
+ifneq ($(strip $(CXXM_DEPS)),)
+-include $(CXXM_DEPS)
+endif
+ifneq ($(strip $(C++M_DEPS)),)
+-include $(C++M_DEPS)
+endif
 ifneq ($(strip $(C_DEPS)),)
 -include $(C_DEPS)
+endif
+ifneq ($(strip $(CPP_DEPS)),)
+-include $(CPP_DEPS)
 endif
 endif
 
@@ -106,7 +130,7 @@ BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
-# 将这些工具调用的输入和输出添加到构建变量 
+# Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 STM32F412_TEST_LVGL_SD.elf \
 
@@ -120,29 +144,29 @@ OBJDUMP_LIST += \
 STM32F412_TEST_LVGL_SD.list \
 
 
-# 所有目标
+# All Target
 all: main-build
 
-# 主构建目标
+# Main-build Target
 main-build: STM32F412_TEST_LVGL_SD.elf secondary-outputs
 
-# 工具调用
+# Tool invocations
 STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.map: $(OBJS) $(USER_OBJS) D:\lvgl\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\lvgl\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-	@echo '已结束构建目标： $@'
+	arm-none-eabi-g++ -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\lvgl\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld" -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	@echo 'Finished building target: $@'
 	@echo ' '
 
 default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
-	@echo '已结束构建： $@'
+	@echo 'Finished building: $@'
 	@echo ' '
 
 STM32F412_TEST_LVGL_SD.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32F412_TEST_LVGL_SD.list"
-	@echo '已结束构建： $@'
+	@echo 'Finished building: $@'
 	@echo ' '
 
-# 其他目标
+# Other Targets
 clean:
 	-$(RM) STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.list STM32F412_TEST_LVGL_SD.map default.size.stdout
 	-@echo ' '
