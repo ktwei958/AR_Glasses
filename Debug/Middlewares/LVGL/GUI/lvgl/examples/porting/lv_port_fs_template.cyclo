@@ -1,0 +1,11 @@
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:61:6:lv_port_fs_init	1
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:96:13:fs_init	2
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:117:14:fs_open	7
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:156:20:fs_close	2
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:176:20:fs_read	2
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:197:20:fs_write	2
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:214:20:fs_seek	5
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:241:20:fs_tell	1
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:256:15:fs_dir_open	4
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:282:20:fs_dir_read	5
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_fs_template.c:309:20:fs_dir_close	2
