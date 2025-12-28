@@ -30,7 +30,7 @@ void Startup::onViewLoad()
 //    Model.SetEncoderEnable(false);
     View.Create(_root);
     lv_timer_t* timer = lv_timer_create(onTimer, 2000, this);
-//    lv_timer_set_repeat_count(timer, 1);
+    lv_timer_set_repeat_count(timer, 1);
 }
 
 void Startup::onViewDidLoad()
@@ -45,7 +45,7 @@ void Startup::onViewWillAppear()
 
 void Startup::onViewDidAppear()
 {
-    lv_obj_fade_out(_root, 500, 1500);
+ //   lv_obj_fade_out(_root, 500, 1500);
 }
 
 void Startup::onViewWillDisappear()
@@ -73,7 +73,7 @@ void Startup::onTimer(lv_timer_t* timer)
 {
     Startup* instance = (Startup*)timer->user_data;
 
-//    instance->_Manager->Replace("Pages/Dialplate");
+    instance->_Manager->Replace("Pages/_Template");
 }
 
 void Startup::onEvent(lv_event_t* event)

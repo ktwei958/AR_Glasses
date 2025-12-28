@@ -74,7 +74,7 @@ void App_Init()
 //    Page::StatusBar_Create(lv_layer_top());
 
     /* Initialize pages */
-//    manager.Install("Template",    "Pages/_Template");
+    manager.Install("Template",    "Pages/_Template");
 //    manager.Install("LiveMap",     "Pages/LiveMap");
 //    manager.Install("Dialplate",   "Pages/Dialplate");
 //    manager.Install("SystemInfos", "Pages/SystemInfos");

@@ -78,6 +78,7 @@ RM := rm -rf
 -include Core/USER/Utils/lv_ext/src/subdir.mk
 -include Core/USER/APP/src/subdir.mk
 -include Core/USER/APP/Pages/src/subdir.mk
+-include Core/USER/APP/Pages/Template/src/subdir.mk
 -include Core/USER/APP/Pages/Startup/src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -153,8 +154,8 @@ all: main-build
 main-build: STM32F412_TEST_LVGL_SD.elf secondary-outputs
 
 # Tool invocations
-STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.map: $(OBJS) $(USER_OBJS) D:\Hiking\STM32F412\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Hiking\STM32F412\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld" -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.map: $(OBJS) $(USER_OBJS) D:\Hiking\STM32F412\STM32F412_TEST_LVGL_SD251228\STM32F412CGUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Hiking\STM32F412\STM32F412_TEST_LVGL_SD251228\STM32F412CGUX_FLASH.ld" -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

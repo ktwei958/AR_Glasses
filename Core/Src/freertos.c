@@ -63,7 +63,7 @@ static uint8_t gps_data_change = 1;
 osThreadId_t TaskMainHandle;
 const osThreadAttr_t TaskMain_attributes = {
   .name = "TaskMain",
-  .stack_size = 4092 * 4,
+  .stack_size = 6144 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GPS_Task */
@@ -163,6 +163,10 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartTaskMain */
 void StartTaskMain(void *argument)
 {
+	UBaseType_t uxHighWaterMark;
+
+	    // 2. 获取初始水位（此时刚进入任务）
+	uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
   /* USER CODE BEGIN StartTaskMain */
 	lv_init();
 	lv_port_init();
@@ -189,6 +193,7 @@ void StartTaskMain(void *argument)
 			xSemaphoreGive(gps_mutex);
 		}
 */
+		uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
 		lv_timer_handler();
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}

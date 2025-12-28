@@ -216,13 +216,16 @@ Core/USER/APP/Pages/src/AppFactory.o: \
  ../Middlewares/LVGL/GUI/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.h \
  ../Middlewares/LVGL/GUI/lvgl/src/extra/libs/ffmpeg/../../../lvgl.h \
  ../Core/USER/APP/Pages/inc/PageFactory.h \
- ../Core/USER/APP/Pages/src/../Startup/inc/Startup.h \
- ../Core/USER/APP/Pages/src/../Startup/inc/StartUpView.h \
+ ../Core/USER/APP/Pages/src/../Template/inc/Template.h \
+ ../Core/USER/APP/Pages/src/../Template/inc/TemplateView.h \
  ../Core/USER/APP/Pages/inc/Page.h \
  ../Core/USER/Utils/lv_ext/inc/lv_obj_ext_func.h \
  ../Core/USER/Utils/lv_ext/inc/lv_anim_timeline_wrapper.h \
  ../Core/USER/APP/Pages/inc/ResourcePool.h \
  ../Core/USER/APP/Pages/inc/StatusBar.h \
+ ../Core/USER/APP/Pages/src/../Template/inc/TemplateModel.h \
+ ../Core/USER/APP/Pages/src/../Startup/inc/Startup.h \
+ ../Core/USER/APP/Pages/src/../Startup/inc/StartUpView.h \
  ../Core/USER/APP/Pages/src/../Startup/inc/StartUpModel.h
 ../Core/USER/APP/Pages/inc/AppFactory.h:
 ../Core/USER/APP/Pages/inc/PageManager.h:
@@ -440,11 +443,14 @@ Core/USER/APP/Pages/src/AppFactory.o: \
 ../Middlewares/LVGL/GUI/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.h:
 ../Middlewares/LVGL/GUI/lvgl/src/extra/libs/ffmpeg/../../../lvgl.h:
 ../Core/USER/APP/Pages/inc/PageFactory.h:
-../Core/USER/APP/Pages/src/../Startup/inc/Startup.h:
-../Core/USER/APP/Pages/src/../Startup/inc/StartUpView.h:
+../Core/USER/APP/Pages/src/../Template/inc/Template.h:
+../Core/USER/APP/Pages/src/../Template/inc/TemplateView.h:
 ../Core/USER/APP/Pages/inc/Page.h:
 ../Core/USER/Utils/lv_ext/inc/lv_obj_ext_func.h:
 ../Core/USER/Utils/lv_ext/inc/lv_anim_timeline_wrapper.h:
 ../Core/USER/APP/Pages/inc/ResourcePool.h:
 ../Core/USER/APP/Pages/inc/StatusBar.h:
+../Core/USER/APP/Pages/src/../Template/inc/TemplateModel.h:
+../Core/USER/APP/Pages/src/../Startup/inc/Startup.h:
+../Core/USER/APP/Pages/src/../Startup/inc/StartUpView.h:
 ../Core/USER/APP/Pages/src/../Startup/inc/StartUpModel.h:

@@ -41,6 +41,7 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Core/USER/APP/Pages/Startup/src \
+Core/USER/APP/Pages/Template/src \
 Core/USER/APP/Pages/src \
 Core/USER/APP/src \
 Core/USER/Utils/lv_ext/src \
