@@ -51,11 +51,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-static GPS_Data GPS_data_share; //别的任务可以拿到的GPS数据
+GPS_Data GPS_data_share; //别的任务可以拿到的GPS数据
 
 GPS_Data GPS_data;
 uint8_t buf[GPS_UART_BUF_SIZE];
-static uint8_t gps_data_change = 1;
+uint8_t gps_data_change;
 
 
 /* USER CODE END Variables */
@@ -177,7 +177,7 @@ void StartTaskMain(void *argument)
 
 	 lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
 */
-	lv_example_hr_display();
+//	lv_example_hr_display();
 
 	App_Init();
 	/* Infinite loop */
@@ -212,6 +212,7 @@ void StartGPSTask(void *argument)
   /* USER CODE BEGIN StartGPSTask */
 
 	GPS_Init();
+	gps_data_change = 0;
 	/* Infinite loop */
 	for (;;) {
 		if (UART_ReadFrame(buf) == 1) {

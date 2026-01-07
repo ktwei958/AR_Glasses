@@ -2,7 +2,7 @@
 #define __TEMPLATE_VIEW_H
 
 #include "Page.h"
-#include "TemplateModel.h"
+
 
 namespace Page
 {
@@ -11,7 +11,7 @@ namespace Page
     {
     public:
         void InitChart(lv_obj_t* root);
-        void Create(lv_obj_t* root);
+
         struct
         {
             lv_obj_t* background;
@@ -20,7 +20,6 @@ namespace Page
 
         struct {
             lv_obj_t* background;
-
 
             lv_obj_t* label_altitude_m;
             lv_obj_t* label_altitude_text;
@@ -44,7 +43,6 @@ namespace Page
             lv_obj_t* dotted_line;
             lv_obj_t* line_dive_bottom;
 
-
             lv_obj_t* line_pin;
             lv_coord_t x;
 
@@ -58,13 +56,13 @@ namespace Page
             lv_obj_t* label_distance_start;
             lv_obj_t* label_distance_end;
         }routeChart;
-        struct
-           {
-               lv_obj_t* cont;
-               lv_obj_t* labelLogo;
 
-               lv_anim_timeline_t* anim_timeline;
-           } ui;
+        struct {
+            lv_obj_t* label_latitude;
+            lv_obj_t* label_longitude;
+            lv_obj_t* label_debug;
+
+        }gpsDatas;
     };
 
 }

@@ -40,10 +40,13 @@ CPP_DEPS :=
 SUBDIRS := \
 Core/Src \
 Core/Startup \
+Core/USER/APP/Pages/HeartRate/src \
 Core/USER/APP/Pages/Startup/src \
 Core/USER/APP/Pages/Template/src \
 Core/USER/APP/Pages/src \
+Core/USER/APP/Resource/Image \
 Core/USER/APP/src \
+Core/USER/Utils/Track_Parse/src \
 Core/USER/Utils/lv_ext/src \
 Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src \
 Drivers/BSP/GH3220/Algo_code/goodix_algo_call/src \

@@ -44,51 +44,19 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 
 void lv_port_disp_init(void)
 {
-    /*-------------------------
-     * Initialize your display
-     * -----------------------*/
-    disp_init();
+	disp_init();
+	//这里将SCREEN_WIDTH * SCREEN_HEIGH优化为SCREEN_WIDTH * 15
+	static lv_disp_draw_buf_t draw_buf_dsc_1;
+	static lv_color_t buf_1[SCREEN_WIDTH * 15]; /*A buffer for 10 rows*/
+	lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, SCREEN_WIDTH * 15);
 
-    /*-----------------------------
-     * Create a buffer for drawing
-     *----------------------------*/
-
-    
-    static lv_disp_draw_buf_t draw_buf_dsc_1;
-    static lv_color_t buf_1[SCREEN_WIDTH * SCREEN_HEIGH];                          /*A buffer for 10 rows*/
-    lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, SCREEN_WIDTH * SCREEN_HEIGH);   /*Initialize the display buffer*/
-
-
-
-    /*-----------------------------------
-     * Register the display in LVGL
-     *----------------------------------*/
-
-    static lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
-    lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
-
-    /*Set up the functions to access to your display*/
-
-    /*Set the resolution of the display*/
-    disp_drv.hor_res = SCREEN_WIDTH;
-    disp_drv.ver_res = SCREEN_HEIGH;
-
-    /*Used to copy the buffer's content to the display*/
-    disp_drv.flush_cb = disp_flush;
-
-    /*Set a display buffer*/
-    disp_drv.draw_buf = &draw_buf_dsc_1;
-
-    /*Required for Example 3)*/
-    //disp_drv.full_refresh = 1
-
-    /* Fill a memory array with a color if you have GPU.
-     * Note that, in lv_conf.h you can enable GPUs that has built-in support in LVGL.
-     * But if you have a different GPU you can use with this callback.*/
-    //disp_drv.gpu_fill_cb = gpu_fill;
-
-    /*Finally register the driver*/
-    lv_disp_drv_register(&disp_drv);
+	static lv_disp_drv_t disp_drv; /*Descriptor of a display driver*/
+	lv_disp_drv_init(&disp_drv); /*Basic initialization*/
+	disp_drv.hor_res = SCREEN_WIDTH;
+	disp_drv.ver_res = SCREEN_HEIGH;
+	disp_drv.flush_cb = disp_flush;
+	disp_drv.draw_buf = &draw_buf_dsc_1;
+	lv_disp_drv_register(&disp_drv);
 }
 
 /**********************
@@ -104,22 +72,25 @@ static void disp_init(void)
 /*Flush the content of the internal buffer the specific area on the display
  *You can use DMA or any hardware acceleration to do this operation in the background but
  *'lv_disp_flush_ready()' has to be called when finished.*/
+
 static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
-	uint32_t x,y;
-    /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
-//	LCD_Fill(area->x1,area->y1,area->x2,area->y2,color_p);
-
-	for(y = area->y1; y <= area->y2; y++) {
-	    for(x = area->x1; x <= area->x2; x++) {
-	    	LCD_DrawPoint(x,y,color_p->full);
-	    	color_p++;
-	    }
-	}
-
-    /*IMPORTANT!!!
-     *Inform the graphics library that you are ready with the flushing*/
-    lv_disp_flush_ready(disp_drv);
+// 1. 边界检查：避免超出屏幕范围（240×240）
+if(area->x1 > SCREEN_WIDTH || area->y1 > SCREEN_HEIGH || area->x2 < 0 || area->y2 < 0) {
+lv_disp_flush_ready(disp_drv);
+return;
+}
+// 2. 设置整个刷新区域的地址（仅调用1次，替代逐像素设置）
+LCD_Address_Set(area->x1, area->y1, area->x2, area->y2);
+// 3. 计算需要传输的像素总数
+uint32_t pixel_num = (area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1);
+// 4. 批量传输所有像素数据（删除逐像素循环，减少SPI指令）
+for(uint32_t i = 0; i < pixel_num; i++) {
+LCD_WR_DATA(color_p->full); // 直接传输，无需逐像素设地址
+color_p++;
+}
+// 5. 通知LVGL刷新完成（必须保留）
+lv_disp_flush_ready(disp_drv);
 }
 
 /*OPTIONAL: GPU INTERFACE*/

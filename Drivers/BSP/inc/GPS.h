@@ -1,6 +1,10 @@
 #ifndef GPS_H
 #define GPS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "main.h"
 #include <string.h>
 #include <stdio.h>
@@ -22,8 +26,8 @@ typedef struct {
     uint8_t valid;        // 解析有效性（1：成功，0：失败）
 } GPS_Data;
 
-
-
+extern GPS_Data GPS_data_share;
+extern uint8_t gps_data_change;
 // 串口接收缓冲区配置
 #define GPS_UART_BUF_SIZE 256  // 缓冲区大小（需大于最长NMEA语句长度）
 extern volatile uint8_t uart_rx_buf[GPS_UART_BUF_SIZE];
@@ -38,6 +42,8 @@ uint8_t GPS_Parse(const char *str, GPS_Data *GPS_data);
 uint8_t UART_ReadFrame(uint8_t *buf);
 uint8_t GNRMC_Parse(const char *nmea_str, GPS_Data *rmc_data) ;
 
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif

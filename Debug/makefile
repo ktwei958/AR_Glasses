@@ -76,10 +76,13 @@ RM := rm -rf
 -include Drivers/BSP/GH3220/Algo_code/goodix_algo_call/src/subdir.mk
 -include Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src/subdir.mk
 -include Core/USER/Utils/lv_ext/src/subdir.mk
+-include Core/USER/Utils/Track_Parse/src/subdir.mk
 -include Core/USER/APP/src/subdir.mk
+-include Core/USER/APP/Resource/Image/subdir.mk
 -include Core/USER/APP/Pages/src/subdir.mk
 -include Core/USER/APP/Pages/Template/src/subdir.mk
 -include Core/USER/APP/Pages/Startup/src/subdir.mk
+-include Core/USER/APP/Pages/HeartRate/src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk

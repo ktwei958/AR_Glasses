@@ -40,7 +40,7 @@ void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 921600;
+  huart1.Init.BaudRate = 9600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -193,10 +193,10 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	/*
+
 	if (huart == GPS_UART_HANDLE){
 		GPS_Read(huart);
-	}*/
+	}
 	if(huart == BLE_UART_HANDLE){
 		BLE_UART_RxCpltCallback(huart);
 	}

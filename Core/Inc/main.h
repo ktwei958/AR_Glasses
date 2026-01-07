@@ -102,9 +102,9 @@ void Error_Handler(void);
 #define HR_SCL_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
-#define  GPS_USART  USART1
+#define  GPS_USART  USART2
 
-#define  GPS_UART_HANDLE    &huart1
+#define  GPS_UART_HANDLE    &huart2
 #define  BLE_UART_HANDLE    &huart1
 
 extern SemaphoreHandle_t gps_mutex;

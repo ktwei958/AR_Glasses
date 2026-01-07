@@ -219,8 +219,7 @@ Core/USER/APP/Pages/Template/src/TemplateView.o: \
  ../Core/USER/Utils/lv_ext/inc/lv_obj_ext_func.h \
  ../Core/USER/Utils/lv_ext/inc/lv_anim_timeline_wrapper.h \
  ../Core/USER/APP/Pages/inc/ResourcePool.h \
- ../Core/USER/APP/Pages/inc/StatusBar.h \
- ../Core/USER/APP/Pages/Template/inc/TemplateModel.h
+ ../Core/USER/APP/Pages/inc/StatusBar.h
 ../Core/USER/APP/Pages/Template/inc/TemplateView.h:
 ../Core/USER/APP/Pages/inc/Page.h:
 ../Middlewares/LVGL/GUI/lvgl/lvgl.h:
@@ -442,4 +441,3 @@ Core/USER/APP/Pages/Template/src/TemplateView.o: \
 ../Core/USER/Utils/lv_ext/inc/lv_anim_timeline_wrapper.h:
 ../Core/USER/APP/Pages/inc/ResourcePool.h:
 ../Core/USER/APP/Pages/inc/StatusBar.h:
-../Core/USER/APP/Pages/Template/inc/TemplateModel.h:

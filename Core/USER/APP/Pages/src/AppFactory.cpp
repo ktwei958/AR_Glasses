@@ -12,6 +12,7 @@
 //#include "Dialplate/Dialplate.h"
 //#include "SystemInfos/SystemInfos.h"
 #include "../Startup/inc/Startup.h"
+#include "../HeartRate/inc/HeartRate.h"
 
 
 #define APP_CLASS_MATCH(className)\
@@ -31,6 +32,7 @@ PageBase* AppFactory::CreatePage(const char* name)
     APP_CLASS_MATCH(Dialplate);
     APP_CLASS_MATCH(SystemInfos);*/
     APP_CLASS_MATCH(Startup);
+    APP_CLASS_MATCH(HeartRate);
 
     return nullptr;
 }

@@ -5,4 +5,4 @@
 ../Core/USER/APP/Pages/inc/PageManager.h:113:10:void PageManager::SetRootDefaultStyle(lv_style_t*)	16	static
 ../Core/USER/APP/src/APP.cpp:20:40:void __tcf_0()	8	static
 ../Core/USER/APP/src/APP.cpp:17:6:void App_Init()	24	static
-../Core/USER/APP/src/APP.cpp:88:6:void App_Uninit()	4	static
+../Core/USER/APP/src/APP.cpp:89:6:void App_Uninit()	4	static

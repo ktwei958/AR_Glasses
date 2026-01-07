@@ -78,11 +78,12 @@ void App_Init()
 //    manager.Install("LiveMap",     "Pages/LiveMap");
 //    manager.Install("Dialplate",   "Pages/Dialplate");
 //    manager.Install("SystemInfos", "Pages/SystemInfos");
+    manager.Install("HeartRate", "Pages/HeartRate");
     manager.Install("Startup",     "Pages/Startup");
 
     manager.SetGlobalLoadAnimType(PageManager::LOAD_ANIM_OVER_TOP);
 
-    manager.Push("Pages/Startup");
+    manager.Push("Pages/_Template");
 }
 
 void App_Uninit()

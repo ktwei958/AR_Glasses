@@ -4,6 +4,26 @@
 // 串口句柄（根据实际使用的串口修改，此处以USART1为例）
 //extern UART_HandleTypeDef huart1;
 
+
+const uint8_t MIN_HR = 50;
+const uint8_t MAX_HR = 220;
+
+    // --- 二阶滤波器的内部状态变量 ---
+    // 使用 Direct Form I 或 II 的差分方程:
+    // y[n] = b0*x[n] + b1*x[n-1] + b2*x[n-2] - a1*y[n-1] - a2*y[n-2]
+float x1, x2; // x[n-1], x[n-2] (输入历史)
+float y1, y2; // y[n-1], y[n-2] (输出历史)
+
+    // --- 滤波器系数 (由采样率和截止频率决定) ---
+float a1, a2;
+float b0, b1, b2;
+
+    // 上一次有效的输出值 (用于在丢弃数据时保持输出)
+uint8_t lastValidOutput;
+
+    // 标记是否是第一次运行
+bool isFirstRun;
+
 // 全局变量定义
 #define BLUETOOTH_MAC "fc7b93c337dc"  // 目标蓝牙模块MAC地址（无冒号）
 #define HEART_RATE_DATA_LEN 4         // 心率广播包长度（16 4E 01 03 → 4字节）
@@ -23,6 +43,32 @@ uint8_t hr_data_buf[HEART_RATE_DATA_LEN]; // 完整心率包缓冲区
 uint8_t rx_count = 0;                     // 已接收字节计数
 uint8_t heart_rate_val = 0;               // 解析后的心率值（十进制）
 uint8_t connect_response_buf[256];         // 蓝牙模块响应接收缓冲区
+
+
+void param_init() {
+        // 重置状态
+        x1 = x2 = 0.0f;
+        y1 = y2 = 0.0f;
+        isFirstRun = true;
+        lastValidOutput = 0;
+
+        // --- 计算二阶巴特沃斯低通滤波器系数 ---
+        // 这里的数学推导基于双线性变换
+ //       float omega = 2.0f * 3.14159265f * cutoffFreq / sampleRate;
+        float sn = 0.5878;
+        float cs = 0.8090;
+        float alpha1 = sn / (2.0f * 0.707f); // 0.707 是 Q 值 (1/sqrt(2))
+
+        float a0 = 1.0f + alpha1;
+
+        // 计算系数并归一化 (除以 a0)
+        b0 = (1.0f - cs) / 2.0f / a0;
+        b1 = (1.0f - cs) / a0;
+        b2 = (1.0f - cs) / 2.0f / a0;
+        a1 = (-2.0f * cs) / a0;
+        a2 = (1.0f - alpha1) / a0;
+}
+
 
 /*********************************************************************
  * @function  : AT_Send_Command
@@ -146,9 +192,35 @@ uint8_t HeartRate_Parser(uint8_t *data)
     {
         return 0; // 非法包，返回0不更新心率值
     }
-
     // 3. 合法包：提取第二位为心率数据（十六进制转十进制）
-    heart_rate_val = data[1];  // 例：0x4E → 78（十进制）
+//    heart_rate_val = data[1];  // 例：0x4E → 78（十进制）
+    uint8_t rawHR = data[1];
+    		if (rawHR < MIN_HR || rawHR > MAX_HR) {
+                return lastValidOutput;
+            }
+
+            // 2. 初始化处理 (防止刚启动时从0突变)
+            if (isFirstRun) {
+                x1 = x2 = rawHR;
+                y1 = y2 = rawHR;
+                lastValidOutput = rawHR;
+                isFirstRun = false;
+                return rawHR;
+            }
+
+            // 3. 执行二阶滤波 (Direct Form I)
+            // 公式：y[n] = b0*x + b1*x1 + b2*x2 - a1*y1 - a2*y2
+            float output = b0 * rawHR + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
+
+            // 4. 更新历史状态
+            x2 = x1;
+            x1 = rawHR;
+            y2 = y1;
+            y1 = output;
+
+            // 5. 更新保持值
+            lastValidOutput = output;
+    				heart_rate_val = (uint8_t)output;
     return heart_rate_val;
 }
 
@@ -210,6 +282,7 @@ void BLE_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  ********************************************************************/
 void Bluetooth_Init(void)
 {
+	param_init();
     // 1. 连接指定MAC地址的蓝牙模块（带10次重试）
 //    HAL_StatusTypeDef connect_status = Bluetooth_Connect_Specified_Name();
 	HAL_StatusTypeDef connect_status =  HAL_OK;
