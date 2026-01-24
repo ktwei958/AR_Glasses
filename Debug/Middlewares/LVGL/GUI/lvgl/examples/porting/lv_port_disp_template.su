@@ -1,3 +1,3 @@
-../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:45:6:lv_port_disp_init	8	static
-../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:100:13:disp_init	8	static
-../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:105:13:disp_flush	32	static
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:40:6:lv_port_disp_init	8	static
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:95:13:disp_init	8	static
+../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.c:128:13:disp_flush	40	static

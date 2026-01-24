@@ -1,3 +1,0 @@
-../Middlewares/LVGL/GUI/lvgl/pngle/pngle.c:20:10:pngle_init	16	static
-../Middlewares/LVGL/GUI/lvgl/pngle/pngle.c:27:5:pngle_feed	48	static
-../Middlewares/LVGL/GUI/lvgl/pngle/pngle.c:70:6:pngle_destroy	16	static

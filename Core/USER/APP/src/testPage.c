@@ -1,5 +1,11 @@
 #include "testPage.h"
 #include "lvgl.h"
+#include <stdio.h>
+#include "BLE.h"
+
+#ifndef LV_SYMBOL_HEART
+#define LV_SYMBOL_HEART "\xEF\x80\x84" /* 对应 FontAwesome 的心形编码 */
+#endif
 
 // 全局变量：用于滑块值更新
 static lv_obj_t *slider_label;
@@ -180,5 +186,56 @@ void update_gps_display_forTestUpdateFre(lv_obj_t *parent, GPS_Data *data,
 			data->longitude >= 0 ? 'E' : 'W');
 
 	lv_label_set_text_fmt(test_label, "testCount: %d", testCount);
+}
+
+
+
+
+// 假设这是你获取心率的函数声明
+// 在实际代码中，你需要包含定义这个函数的头文件
+
+
+// 定义一个全局或静态的 label 指针，或者通过 user_data 传递
+static lv_obj_t * hr_label;
+
+/**
+ * @brief 定时器回调函数，用于刷新心率显示
+ * @param timer 定时器对象指针
+ */
+static void hr_update_timer_cb(lv_timer_t * timer)
+{
+    // 1. 获取心率数据
+    int current_hr = Get_Heart_Rate();
+
+    // 2. 更新 Label 的文本
+    // 使用 lv_label_set_text_fmt 可以像 printf 一样格式化字符串
+    // LV_SYMBOL_HEART 是 LVGL 自带的心形图标
+    if(hr_label != NULL) {
+        lv_label_set_text_fmt(hr_label, "%s %d BPM", LV_SYMBOL_HEART, current_hr);
+    }
+}
+
+/**
+ * @brief 初始化心率显示界面
+ */
+void lv_example_hr_display(void)
+{
+    // --- 1. 创建显示 Label ---
+    hr_label = lv_label_create(lv_scr_act()); // 在当前活动屏幕上创建
+
+    // 设置字体 (可选，如果没有大字体，可以使用默认的 &lv_font_montserrat_14)
+    // 注意：使用大字体需要在 lv_conf.h 中开启对应的宏
+    lv_obj_set_style_text_font(hr_label, &lv_font_montserrat_24, 0);
+
+    // 设置对齐方式：屏幕居中
+    lv_obj_align(hr_label, LV_ALIGN_CENTER, 0, 0);
+
+    // 初始化显示内容
+    lv_label_set_text(hr_label, "Waiting...");
+
+    // --- 2. 创建定时器 ---
+    // 创建一个 LVGL 定时器，每 1000ms (1秒) 调用一次回调函数
+    // 这样可以避免频繁刷新导致屏幕闪烁或占用过多 CPU
+    lv_timer_create(hr_update_timer_cb, 1000, NULL);
 }
 

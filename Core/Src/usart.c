@@ -21,7 +21,7 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "BLE.h"
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -193,8 +193,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	/*
 	if (huart == GPS_UART_HANDLE){
 		GPS_Read(huart);
+	}*/
+	if(huart == BLE_UART_HANDLE){
+		BLE_UART_RxCpltCallback(huart);
 	}
 
 }

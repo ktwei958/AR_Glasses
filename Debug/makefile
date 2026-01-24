@@ -61,7 +61,6 @@ RM := rm -rf
 -include Middlewares/LVGL/GUI/lvgl/src/draw/nxp_pxp/subdir.mk
 -include Middlewares/LVGL/GUI/lvgl/src/draw/subdir.mk
 -include Middlewares/LVGL/GUI/lvgl/src/core/subdir.mk
--include Middlewares/LVGL/GUI/lvgl/pngle/subdir.mk
 -include Middlewares/LVGL/GUI/lvgl/examples/porting/subdir.mk
 -include FATFS/Target/subdir.mk
 -include FATFS/App/subdir.mk
@@ -76,7 +75,11 @@ RM := rm -rf
 -include Drivers/BSP/GH3220/Kernel_code/driver/src/subdir.mk
 -include Drivers/BSP/GH3220/Algo_code/goodix_algo_call/src/subdir.mk
 -include Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src/subdir.mk
+-include Core/USER/Utils/lv_ext/src/subdir.mk
 -include Core/USER/APP/src/subdir.mk
+-include Core/USER/APP/Pages/src/subdir.mk
+-include Core/USER/APP/Pages/Template/src/subdir.mk
+-include Core/USER/APP/Pages/Startup/src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
@@ -151,8 +154,8 @@ all: main-build
 main-build: STM32F412_TEST_LVGL_SD.elf secondary-outputs
 
 # Tool invocations
-STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.map: $(OBJS) $(USER_OBJS) D:\lvgl\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\lvgl\STM32F412_TEST_LVGL_SD251119\STM32F412CGUX_FLASH.ld" -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+STM32F412_TEST_LVGL_SD.elf STM32F412_TEST_LVGL_SD.map: $(OBJS) $(USER_OBJS) D:\lvgl\AR_Glasses-main\STM32F412CGUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "STM32F412_TEST_LVGL_SD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\lvgl\AR_Glasses-main\STM32F412CGUX_FLASH.ld" -Wl,-Map="STM32F412_TEST_LVGL_SD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

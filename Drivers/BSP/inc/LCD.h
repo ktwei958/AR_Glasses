@@ -11,7 +11,7 @@ typedef uint16_t u16;   // u16 等价于 uint16_t（无符号16位整数
 #define SCREEN_WIDTH 240
 #define SCREEN_HEIGH 240
 
-#define USE_HORIZONTAL 1
+#define USE_HORIZONTAL 0
 
 
 

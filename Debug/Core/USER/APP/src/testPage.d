@@ -260,7 +260,8 @@ Core/USER/APP/src/testPage.o: ../Core/USER/APP/src/testPage.c \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h \
  ../Core/Inc/delay.h ../Core/Inc/main.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h ../Middlewares/LVGL/GUI/lvgl/lvgl.h
+ ../Core/Inc/usart.h ../Middlewares/LVGL/GUI/lvgl/lvgl.h \
+ ../Drivers/BSP/inc/BLE.h
 ../Core/USER/APP/inc/testPage.h:
 ../Drivers/BSP/inc/GPS.h:
 ../Core/Inc/main.h:
@@ -528,3 +529,4 @@ Core/USER/APP/src/testPage.o: ../Core/USER/APP/src/testPage.c \
 ../Core/Inc/tim.h:
 ../Core/Inc/usart.h:
 ../Middlewares/LVGL/GUI/lvgl/lvgl.h:
+../Drivers/BSP/inc/BLE.h:

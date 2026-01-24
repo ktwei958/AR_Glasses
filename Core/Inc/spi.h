@@ -38,6 +38,17 @@ extern SPI_HandleTypeDef hspi1;
 
 /* USER CODE END Private defines */
 
+/* 外部声明SPI和DMA句柄、DMA信号量 */
+extern DMA_HandleTypeDef hdma_spi1_tx;
+extern SemaphoreHandle_t spi1_dma_sem;
+
+/* SPI1 DMA发送函数声明 */
+HAL_StatusTypeDef lcd_spi_send_data_dma(uint8_t *pData, uint16_t len);
+/* 等待DMA传输完成 */
+bool lcd_spi_wait_dma_complete(uint32_t timeout);
+
+
+
 void MX_SPI1_Init(void);
 
 /* USER CODE BEGIN Prototypes */

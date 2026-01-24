@@ -3,8 +3,9 @@
 #include "spi.h"
 
 // DMA传输完成标志（0：未完成，1：完成）
-uint8_t LCD_DMA_TX_Finished = 0;
-uint8_t LCD_DMA_Buf_Occupied = 0; // 缓冲区占用标志（0=空闲，1=占用）
+uint8_t LCD_DMA_TX_Finished = 1;
+// 缓冲区占用标志（0=空闲，1=占用）
+uint8_t LCD_DMA_Buf_Occupied = 0;
 
 void delay_ms(uint16_t xms) {
 	HAL_Delay(xms);
@@ -32,6 +33,14 @@ static void LCD_SPI_Transmit(u8 dat) {
 
 	// 硬件SPI传输1字节数据（阻塞模式，确保传输完成）
 	HAL_SPI_Transmit(&hspi1, &dat, 1, HAL_MAX_DELAY);
+
+
+//	// 改为DMA传输（高效，非阻塞）
+//	if(lcd_spi_send_data_dma(&dat, 1) == HAL_OK)
+//	{
+//	  // 等待传输完成（可选，根据任务设计决定是否阻塞）
+//	  lcd_spi_wait_dma_complete(HAL_MAX_DELAY);
+//	}
 }
 
 /******************************************************************************
@@ -41,10 +50,9 @@ static void LCD_SPI_Transmit(u8 dat) {
  注意：传输期间CPU可执行其他任务，通过LCD_DMA_TX_Finished标志判断完成
  ******************************************************************************/
 void LCD_SPI_Transmit_DMA(uint8_t *pData, uint16_t Len) {
-	while (LCD_DMA_Buf_Occupied == 1)
-		; // 缓冲区被占用，拒绝新传输
+	while (LCD_DMA_Buf_Occupied == 1); // 缓冲区被占用，拒绝新传输
 	LCD_DMA_Buf_Occupied = 1; // 标记占用
-	LCD_DMA_TX_Finished = 0;
+	LCD_DMA_TX_Finished = 0; // 重置完成标志
 	HAL_SPI_Transmit_DMA(&hspi1, pData, Len);
 }
 
@@ -93,16 +101,13 @@ void LCD_WR_DATA(u16 dat) {
  入口数据：dat 写入的数据
  返回值：无
  ******************************************************************************/
+static uint8_t lcd_dma_tmp_buf[2];
 void LCD_WR_DATA_DMA(u16 dat) {
-	uint8_t *dma_buf = (uint8_t*) malloc(2); // 堆分配（需手动释放）
-	if (dma_buf == NULL)
-		return; // 内存分配失败保护
-	dma_buf[0] = (dat >> 8) & 0xFF;    // 高8位（先传）
-	dma_buf[1] = dat & 0xFF;
-	LCD_SPI_Transmit_DMA(dma_buf, 2);  // 先传高8位（MSB）再传低8位
-	while (LCD_DMA_TX_Finished == 0)
-		;
-	free(dma_buf);
+    lcd_dma_tmp_buf[0] = (dat >> 8) & 0xFF;
+    lcd_dma_tmp_buf[1] = dat & 0xFF;
+    LCD_SPI_Transmit_DMA(lcd_dma_tmp_buf, 2);
+    while (LCD_DMA_TX_Finished == 0); // 等待完成
+    LCD_DMA_TX_Finished = 0;
 }
 
 /******************************************************************************
@@ -184,7 +189,7 @@ void LCD_Init(void) {
 		LCD_WR_DATA8(0xA0);
 
 	LCD_WR_REG(0x3A);
-	LCD_WR_DATA8(0x55);  //0x05=BGR565，0x55=RGB565
+	LCD_WR_DATA8(0x05);
 
 	LCD_WR_REG(0xB2);
 	LCD_WR_DATA8(0x0C);
@@ -264,102 +269,88 @@ void LCD_DrawPoint(u16 x,u16 y,u16 color)
 	LCD_WR_DATA(color);
 }
 
+//// 全局定义静态DMA缓冲区,避免频繁申请内存导致内存碎片化,同时避免在Freertos中使用Malloc申请内存
+//#define BLOCK_MAX_SIZE 65534U
+//static uint8_t dma_buf[BLOCK_MAX_SIZE] = {0}; // 静态缓冲区，生命周期贯穿整个程序
+//
+//void LCD_Fill(u16 xsta, u16 ysta, u16 xend, u16 yend, lv_color_t  *color) {
+//    uint32_t total_pixels = (uint32_t)(xend - xsta + 1) * (yend - ysta + 1);
+//    uint32_t total_bytes = 2 * total_pixels;
+//    uint16_t current_block_size;
+//    uint32_t buf_offset = 0;
+//
+//    LCD_Address_Set(xsta, ysta, xend, yend);
+//    LCD_CS_Clr();
+//    LCD_DC_Set();
+//
+//    // 分块传输逻辑不变，直接用dma_buf
+//    while (total_bytes > 0) {
+//        current_block_size = (total_bytes > BLOCK_MAX_SIZE) ? BLOCK_MAX_SIZE : (uint16_t)total_bytes;
+//        current_block_size = current_block_size & 0xFFFE;
+//
+//        // 填充缓冲区（逻辑不变）
+//        for (uint16_t i = 0; i < current_block_size; i += 2) {
+//            uint32_t pixel_idx = (buf_offset + i) / 2;
+//            u16 pixel_color = color[pixel_idx].full;
+//            dma_buf[i] = (pixel_color >> 8) & 0xFF;
+//            dma_buf[i + 1] = pixel_color & 0xFF;
+//        }
+//
+//        LCD_SPI_Transmit_DMA(dma_buf, current_block_size);
+//        while (LCD_DMA_TX_Finished == 0);
+//        LCD_DMA_TX_Finished = 0;
+//
+//        total_bytes -= current_block_size;
+//        buf_offset += current_block_size;
+//    }
+//
+//    LCD_CS_Set();
+//}
 
-/******************************************************************************
- 函数说明：DMA模式填充颜色（核心修改：大批量数据用DMA传输）
- 入口数据：xsta,ysta 起始坐标；xend,yend 终止坐标；color 颜色缓冲区（16位/像素）
- 返回值：无
- 优化点：避免双重循环，直接将16位颜色数据转为8位字节流，DMA一次性传输
- ******************************************************************************/
+
+
 
 void LCD_Fill(u16 xsta, u16 ysta, u16 xend, u16 yend, lv_color_t  *color) {
+    uint32_t total_pixels = (uint32_t)(xend - xsta + 1) * (yend - ysta + 1); // 补+1（原代码少算像素）
+    uint32_t total_bytes = 2 * total_pixels;
+    #define BLOCK_MAX_SIZE 65534U // 留1字节余量，避免uint16_t溢出
+    uint16_t current_block_size;
+    uint32_t buf_offset = 0;
 
-/*
-	 u16 i, j;
-	 LCD_Address_Set(xsta, ysta, xend - 1, yend - 1); //设置显示范围
-	 for (i = ysta; i < yend; i++) {
-	 for (j = xsta; j < xend; j++) {
-	 LCD_WR_DATA(*color++);
-	 }
-	 }*/
-/*
-	uint32_t total_pixels = (xend - xsta) * (yend - ysta);
-	// 显式创建8位缓冲区（或使用栈/堆，根据像素数调整）
-	uint8_t *dma_buf = (uint8_t*) malloc(2 * total_pixels); // 堆分配（需手动释放）
-	if (dma_buf == NULL)
-		return; // 内存分配失败保护
+    uint8_t *dma_buf = (uint8_t *)malloc(BLOCK_MAX_SIZE);
+    if (dma_buf == NULL) return;
 
-	// 拆分16位颜色为：高8位→先传，低8位→后传（符合LCD时序）
-	for (uint32_t i = 0; i < total_pixels; i++) {
-		dma_buf[2 * i] = (color[i].full >> 8) & 0xFF;    // 高8位（先传）
-		dma_buf[2 * i + 1] = color[i].full & 0xFF;       // 低8位（后传）
-	}
+    LCD_Address_Set(xsta, ysta, xend, yend);
+    LCD_CS_Clr();
+    LCD_DC_Set();
 
-	LCD_Address_Set(xsta, ysta, xend - 1, yend - 1);
-	LCD_CS_Clr();
-	LCD_DC_Set();
+    // 分块传输核心逻辑
+    while (total_bytes > 0) {
+        // 计算当前块长度：不超过BLOCK_MAX_SIZE，且不超过剩余字节数
+        current_block_size = (total_bytes > BLOCK_MAX_SIZE) ? BLOCK_MAX_SIZE : (uint16_t)total_bytes;
+        // 确保块长度是2的倍数（16位颜色，避免半像素）
+        current_block_size = current_block_size & 0xFFFE;
 
-	// 启动DMA传输（注意：若总字节数>65535，需修改Len为uint32_t）
-	LCD_SPI_Transmit_DMA(dma_buf, 2 * total_pixels);
-	while (LCD_DMA_TX_Finished == 0); // 阻塞等待
+        // 填充当前块缓冲区
+        for (uint16_t i = 0; i < current_block_size; i += 2) {
+            uint32_t pixel_idx = (buf_offset + i) / 2;
+            u16 pixel_color = color[pixel_idx].full;
+            dma_buf[i] = (pixel_color >> 8) & 0xFF;  // 高8位
+            dma_buf[i + 1] = pixel_color & 0xFF;     // 低8位
+        }
 
-	LCD_CS_Set();
-	LCD_DMA_TX_Finished = 0;
-	free(dma_buf); // 释放堆内存（避免内存泄漏）*/
+        // 启动DMA传输
+        LCD_SPI_Transmit_DMA(dma_buf, current_block_size);
+        // 等待传输完成（修复后的循环）
+        while (LCD_DMA_TX_Finished == 0);
+        LCD_DMA_TX_Finished = 0; // 重置标志
 
-//	if(color == NULL) return; // 空指针保护
+        // 更新剩余字节和偏移
+        total_bytes -= current_block_size;
+        buf_offset += current_block_size;
+    }
 
-	    // 1. 计算总像素数和总字节数（16位颜色=2字节/像素）
-	    uint32_t total_pixels = (uint32_t)(xend - xsta) * (yend - ysta);
-	    uint32_t total_bytes = 2 * total_pixels; // 总传输字节数
-
-	    // 2. 定义单次DMA最大传输字节数（HAL库uint16_t上限）
-	    #define BLOCK_MAX_SIZE 65535U // 单次最大65535字节（64KB）
-	    uint16_t current_block_size; // 当前块传输长度
-	    uint32_t remaining_bytes = total_bytes; // 剩余未传输字节数
-	    uint32_t buf_offset = 0; // 缓冲区偏移量（用于分块）
-
-	    // 3. 分配8位DMA传输缓冲区（大小=BLOCK_MAX_SIZE，避免频繁分配）
-	    uint8_t *dma_buf = (uint8_t *)malloc(BLOCK_MAX_SIZE);
-	    if (dma_buf == NULL) return; // 内存分配失败保护
-
-	    // 4. 配置LCD显示区域和控制引脚
-	    LCD_Address_Set(xsta, ysta, xend - 1, yend - 1); // 设置填充区域
-	    LCD_CS_Clr(); // 拉低CS，保持选中（整个分块传输期间不释放）
-	    LCD_DC_Set(); // 数据模式（后续传输的是像素数据）
-
-	    // 5. 分块DMA传输循环
-	    while (remaining_bytes > 0) {
-	        // 计算当前块的传输长度（不超过剩余字节数和BLOCK_MAX_SIZE）
-	        current_block_size = (remaining_bytes > BLOCK_MAX_SIZE) ? BLOCK_MAX_SIZE : (uint16_t)remaining_bytes;
-
-	        // 6. 填充当前块的DMA缓冲区（显式拆分16位颜色→8位字节流，解决大小端问题）
-	        for (uint16_t i = 0; i < current_block_size; i += 2) {
-	            // 计算当前像素在color缓冲区中的索引（buf_offset是字节偏移，需/2转换为像素索引）
-	            uint32_t pixel_idx = (buf_offset + i) / 2;
-	            u16 pixel_color = color[pixel_idx].full; // 获取16位颜色值
-
-	            // 按LCD要求的顺序：先传高8位，再传低8位（兼容所有CPU）
-	            dma_buf[i] = (pixel_color >> 8) & 0xFF;    // 高8位（MSB）
-	            dma_buf[i + 1] = pixel_color & 0xFF;       // 低8位（LSB）
-	        }
-
-	        // 7. 启动当前块的DMA传输（HAL库uint16_t长度兼容）
-	        LCD_SPI_Transmit_DMA(dma_buf, current_block_size);
-
-	        // 8. 等待当前块传输完成（阻塞模式，确保分块顺序正确）
-	        while (LCD_DMA_TX_Finished == 0);
-	        LCD_DMA_TX_Finished = 0; // 重置完成标志
-
-	        // 9. 更新剩余字节数和缓冲区偏移量
-	        remaining_bytes -= current_block_size;
-	        buf_offset += current_block_size;
-	    }
-
-	    // 10. 传输完成，释放资源
-	    LCD_CS_Set(); // 拉高CS，释放LCD
-	    free(dma_buf); // 释放DMA缓冲区（避免内存泄漏）
-	    dma_buf = NULL; // 避免野指针*/
+    LCD_CS_Set();
+    free(dma_buf);
+    dma_buf = NULL;
 }
-
-

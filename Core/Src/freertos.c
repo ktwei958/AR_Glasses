@@ -31,7 +31,7 @@
 #include "GPS.h"
 #include "gh_demo.h"
 #include "testPage.h"
-
+#include "APP.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,7 +63,7 @@ static uint8_t gps_data_change = 1;
 osThreadId_t TaskMainHandle;
 const osThreadAttr_t TaskMain_attributes = {
   .name = "TaskMain",
-  .stack_size = 4092 * 4,
+  .stack_size = 6144 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GPS_Task */
@@ -161,55 +161,26 @@ void MX_FREERTOS_Init(void) {
  * @retval None
  */
 /* USER CODE END Header_StartTaskMain */
-//void StartTaskMain(void *argument)
-//
-//{
-//  /* USER CODE BEGIN StartTaskMain */
-//	lv_init();
-//	lv_port_init();
-//	lv_obj_t * img1 = lv_img_create(lv_scr_act());
-//	 const char *img_path = "S:/img/test8.bin"; //test5 test4 test8 ok
-//
-//	lv_img_set_src(img1,img_path);
-//	lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
-//
-//	/* Infinite loop */
-//	for (;;) {
-//
-//		if (xSemaphoreTake(gps_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
-//
-//			if(gps_data_change == 1){
-//				gps_data_change = 0;
-//				update_gps_display(lv_scr_act(), &GPS_data_share);
-//			}
-//			// 释放互斥锁（必须执行，否则其他任务会阻塞）
-//			xSemaphoreGive(gps_mutex);
-//		}
-//
-//		lv_timer_handler();
-//		vTaskDelay(pdMS_TO_TICKS(5));
-//	}
-//  /* USER CODE END StartTaskMain */
-//}
-
-
-//#include "../../Cpp/_Template/TemplateView.h"
-/* 测试lvgl界面设计显示 */
 void StartTaskMain(void *argument)
-
 {
+	UBaseType_t uxHighWaterMark;
+
+	    // 2. 获取初始水位（此时刚进入任务）
+	uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
   /* USER CODE BEGIN StartTaskMain */
 	lv_init();
 	lv_port_init();
 
-//	lv_obj_t* root = lv_obj_create(lv_scr_act());
-//	SetChart(root);
+	lv_obj_t * img1 = lv_img_create(lv_scr_act());
+	 const char *img_path = "S:/img/test8.bin"; //test5 test4 test8 ok
+	lv_img_set_src(img1,img_path);
+	lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
 
-	CppMain();
-
+//	lv_example_hr_display();
+//	App_Init();
 	/* Infinite loop */
 	for (;;) {
-
+/*
 		if (xSemaphoreTake(gps_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
 
 			if(gps_data_change == 1){
@@ -219,42 +190,13 @@ void StartTaskMain(void *argument)
 			// 释放互斥锁（必须执行，否则其他任务会阻塞）
 			xSemaphoreGive(gps_mutex);
 		}
-
+*/
+		uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
 		lv_timer_handler();
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}
+  /* USER CODE END StartTaskMain */
 }
-
-//#include "pngle.h"
-//#include "png_lvgl.h"
-
-/* 测试PNGLE解码库 */
-//void StartTaskMain(void *argument)
-//{
-//  /* USER CODE BEGIN StartTaskMain */
-//    lv_init();
-//    lv_port_init();
-//
-//    // 替换原lv_img_create + lv_img_set_src：加载TF卡中的大PNG
-//    const char *png_path = "S:/img/test.png"; // 大PNG文件路径
-//    lv_obj_t *png_canvas = png_lvgl_load(png_path, lv_scr_act());
-//    lv_obj_align(png_canvas, LV_ALIGN_CENTER, 0, 0); // 居中显示
-//
-//	/* Infinite loop */
-//	for (;;) {
-//		if (xSemaphoreTake(gps_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
-//			if(gps_data_change == 1){
-//				gps_data_change = 0;
-//				update_gps_display(lv_scr_act(), &GPS_data_share);
-//			}
-//			xSemaphoreGive(gps_mutex);
-//		}
-//		lv_timer_handler();
-//		vTaskDelay(pdMS_TO_TICKS(5));
-//	}
-//  /* USER CODE END StartTaskMain */
-//}
-
 
 /* USER CODE BEGIN Header_StartGPSTask */
 /**

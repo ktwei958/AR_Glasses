@@ -44,7 +44,6 @@ extern "C" {
 #include "usart.h"
 
 
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -66,7 +65,6 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void CppMain();
 #define LOG    1 //如果LOG = 1则启用LOG调试，使用串口2用printf输出
 /* USER CODE END EFP */
 
@@ -107,6 +105,7 @@ void CppMain();
 #define  GPS_USART  USART1
 
 #define  GPS_UART_HANDLE    &huart1
+#define  BLE_UART_HANDLE    &huart1
 
 extern SemaphoreHandle_t gps_mutex;
 /* USER CODE END Private defines */

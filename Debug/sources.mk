@@ -40,7 +40,11 @@ CPP_DEPS :=
 SUBDIRS := \
 Core/Src \
 Core/Startup \
+Core/USER/APP/Pages/Startup/src \
+Core/USER/APP/Pages/Template/src \
+Core/USER/APP/Pages/src \
 Core/USER/APP/src \
+Core/USER/Utils/lv_ext/src \
 Drivers/BSP/GH3220/Algo_code/goodix_algo_application/src \
 Drivers/BSP/GH3220/Algo_code/goodix_algo_call/src \
 Drivers/BSP/GH3220/Kernel_code/driver/src \
@@ -55,7 +59,6 @@ Drivers/STM32F4xx_HAL_Driver/Src \
 FATFS/App \
 FATFS/Target \
 Middlewares/LVGL/GUI/lvgl/examples/porting \
-Middlewares/LVGL/GUI/lvgl/pngle \
 Middlewares/LVGL/GUI/lvgl/src/core \
 Middlewares/LVGL/GUI/lvgl/src/draw \
 Middlewares/LVGL/GUI/lvgl/src/draw/nxp_pxp \

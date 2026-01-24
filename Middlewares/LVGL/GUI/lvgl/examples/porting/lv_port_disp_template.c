@@ -1,9 +1,4 @@
-/**
- * @file lv_port_disp_templ.c
- *
- */
-
- /*Copy this file as "lv_port_disp.c" and set this value to "1" to enable content*/
+/*Copy this file as "lv_port_disp.c" and set this value to "1" to enable content*/
 #if 1
 
 /*********************
@@ -102,51 +97,51 @@ static void disp_init(void)
    LCD_Init();
 }
 
-static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
-{
-    // 1. 边界检查：避免超出屏幕范围（240×240）
-    if(area->x1 > 240 || area->y1 > 240 || area->x2 < 0 || area->y2 < 0) {
-        lv_disp_flush_ready(disp_drv);
-        return;
-    }
-
-    // 2. 设置整个刷新区域的地址（仅调用1次，替代逐像素设置）
-    LCD_Address_Set(area->x1, area->y1, area->x2, area->y2);
-
-    // 3. 计算需要传输的像素总数
-    uint32_t pixel_num = (area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1);
-
-    // 4. 批量传输所有像素数据（删除逐像素循环，减少SPI指令）
-    for(uint32_t i = 0; i < pixel_num; i++) {
-        LCD_WR_DATA(color_p->full); // 直接传输，无需逐像素设地址
-        color_p++;
-    }
-
-    // 5. 通知LVGL刷新完成（必须保留）
-    lv_disp_flush_ready(disp_drv);
-}
+//static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
+//{
+//    // 1. 边界检查：避免超出屏幕范围（240×240）
+//    if(area->x1 > 240 || area->y1 > 240 || area->x2 < 0 || area->y2 < 0) {
+//        lv_disp_flush_ready(disp_drv);
+//        return;
+//    }
+//
+//    // 2. 设置整个刷新区域的地址（仅调用1次，替代逐像素设置）
+//    LCD_Address_Set(area->x1, area->y1, area->x2, area->y2);
+//
+//    // 3. 计算需要传输的像素总数
+//    uint32_t pixel_num = (area->x2 - area->x1 + 1) * (area->y2 - area->y1 + 1);
+//
+//    // 4. 批量传输所有像素数据（删除逐像素循环，减少SPI指令）
+//    for(uint32_t i = 0; i < pixel_num; i++) {
+//        LCD_WR_DATA(color_p->full); // 直接传输，无需逐像素设地址
+//        color_p++;
+//    }
+//
+//    // 5. 通知LVGL刷新完成（必须保留）
+//    lv_disp_flush_ready(disp_drv);
+//}
 
 
 /*Flush the content of the internal buffer the specific area on the display
  *You can use DMA or any hardware acceleration to do this operation in the background but
  *'lv_disp_flush_ready()' has to be called when finished.*/
-//static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
-//{
-//	uint32_t x,y;
-//    /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
-////	LCD_Fill(area->x1,area->y1,area->x2,area->y2,color_p);
-//
+static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
+{
+	uint32_t x,y;
+    /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
+	LCD_Fill(area->x1,area->y1,area->x2,area->y2,color_p);
+
 //	for(y = area->y1; y <= area->y2; y++) {
 //	    for(x = area->x1; x <= area->x2; x++) {
 //	    	LCD_DrawPoint(x,y,color_p->full);
 //	    	color_p++;
 //	    }
 //	}
-//
-//    /*IMPORTANT!!!
-//     *Inform the graphics library that you are ready with the flushing*/
-//    lv_disp_flush_ready(disp_drv);
-//}
+
+    /*IMPORTANT!!!
+     *Inform the graphics library that you are ready with the flushing*/
+    lv_disp_flush_ready(disp_drv);
+}
 
 /*OPTIONAL: GPU INTERFACE*/
 

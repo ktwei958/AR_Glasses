@@ -1,7 +1,6 @@
-Core/Src/main.o: ../Core/Src/main.cpp \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/main.h \
+Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/stm32f4xx_hal_conf.h \
+ ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -34,7 +33,7 @@ Core/Src/main.o: ../Core/Src/main.cpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/FreeRTOSConfig.h \
+ ../Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
@@ -259,32 +258,23 @@ Core/Src/main.o: ../Core/Src/main.cpp \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/rlottie/../../../lvgl.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h \
- ../Drivers/BSP/inc/GPS.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/delay.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/main.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/tim.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/usart.h \
+ ../Drivers/BSP/inc/GPS.h ../Core/Inc/delay.h ../Core/Inc/main.h \
+ ../Core/Inc/tim.h ../Core/Inc/usart.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/dma.h ../FATFS/App/fatfs.h \
+ ../Core/Inc/dma.h ../FATFS/App/fatfs.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../FATFS/Target/bsp_driver_sd.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/sd_diskio.h \
- ../Drivers/BSP/inc/SD_opera.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/rtc.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/spi.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/tim.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/usart.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/gpio.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/sdio.h \
- ../Middlewares/LVGL/GUI/lvgl/lvgl.h ../Core/USER/APP/inc/TemplateView.h \
- D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/Pages/Page.h
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/main.h:
+ ../Drivers/BSP/inc/SD_opera.h ../Core/Inc/rtc.h ../Core/Inc/spi.h \
+ ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
+ ../Core/Inc/sdio.h
+../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/stm32f4xx_hal_conf.h:
+../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
@@ -317,7 +307,7 @@ D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/FreeRTOSConfig.h:
+../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
@@ -543,13 +533,13 @@ D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h:
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h:
 ../Drivers/BSP/inc/GPS.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/delay.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/main.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/tim.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/usart.h:
+../Core/Inc/delay.h:
+../Core/Inc/main.h:
+../Core/Inc/tim.h:
+../Core/Inc/usart.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/dma.h:
+../Core/Inc/dma.h:
 ../FATFS/App/fatfs.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../Middlewares/Third_Party/FatFs/src/integer.h:
@@ -560,12 +550,9 @@ D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/dma.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/sd_diskio.h:
 ../Drivers/BSP/inc/SD_opera.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/rtc.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/spi.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/tim.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/usart.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/gpio.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Core/Inc/sdio.h:
-../Middlewares/LVGL/GUI/lvgl/lvgl.h:
-../Core/USER/APP/inc/TemplateView.h:
-D:/lvgl/STM32F412_TEST_LVGL_SD251119/Middlewares/LVGL/GUI/lvgl/Pages/Page.h:
+../Core/Inc/rtc.h:
+../Core/Inc/spi.h:
+../Core/Inc/tim.h:
+../Core/Inc/usart.h:
+../Core/Inc/gpio.h:
+../Core/Inc/sdio.h:
