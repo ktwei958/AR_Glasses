@@ -34,23 +34,28 @@ float TemplateModel::distanceMeters(float lat1, float lon1, float lat2, float lo
 
 void TemplateModel::KMLParser() {
      //push_back,逐行添加数据
-	const char* kml_file_path = "S:/track/dafushan.kml";
+	const char* kml_file_path = "S:/track/DFS.kml";
+	const char* parse_file_path = "S:/track/DFS.txt";
 	rawCoordinates.clear();
-	int count = kml_parse_coordinates(kml_file_path, rawCoordinates);
-
+	//int count = kml_parse_coordinates(kml_file_path, rawCoordinates);
+	//int count = kml_parse_to_file(kml_file_path,parse_file_path);
+	//int count = count_kml_points(kml_file_path);
+	int count = kml_filter_to_file(kml_file_path,parse_file_path);
+	load_points_from_file(parse_file_path,rawCoordinates,count);
 	if (count < 0) {
 	        LV_LOG_USER("解析失败！");
 	}
 	else {
 	        LV_LOG_USER("成功解析了 %d 个坐标点", count);
 	}
-	/*
+/*
     rawCoordinates.clear();
     struct Local {
         static void add(TemplateModel* m,
             float lat, float lon, float alt)
         {
-            TemplateModel::RawCoordinates rc;
+            //TemplateModel::RawCoordinates rc;
+        	RawCoordinates rc;
             rc.latitude = lat;
             rc.longitude = lon;
             rc.altitude = alt;
@@ -268,7 +273,7 @@ void TemplateModel::KMLParser() {
     Local::add(this, 23.043346f, 113.388235f, 25.831562f);
     Local::add(this, 23.043347f, 113.388320f, 25.816586f);
     Local::add(this, 23.043347f, 113.388403f, 25.706858f);
-    */
+*/
 
 }
 

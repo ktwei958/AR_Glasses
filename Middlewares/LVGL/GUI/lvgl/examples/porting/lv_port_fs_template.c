@@ -42,6 +42,12 @@ static void* fs_dir_open(lv_fs_drv_t *drv, const char *path);
 static lv_fs_res_t fs_dir_read(lv_fs_drv_t *drv, void *rddir_p, char *fn);
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t *drv, void *rddir_p);
 
+
+/* === 新增函数声明 === */
+static lv_fs_res_t fs_remove(lv_fs_drv_t * drv, const char * path);
+static lv_fs_res_t fs_rename(lv_fs_drv_t * drv, const char * oldname, const char * newname);
+
+
 /**********************
  *  STATIC VARIABLES
  **********************/
@@ -84,6 +90,10 @@ void lv_port_fs_init(void) {
 	fs_drv.dir_close_cb = fs_dir_close;
 	fs_drv.dir_open_cb = fs_dir_open;
 	fs_drv.dir_read_cb = fs_dir_read;
+
+	/* === 注册新增的回调函数 === */
+	    fs_drv.remove_cb = fs_remove;
+	    fs_drv.rename_cb = fs_rename;
 
 	lv_fs_drv_register(&fs_drv);
 }
@@ -320,6 +330,68 @@ static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * rddir_p)
 		return LV_FS_RES_UNKNOWN;
 	}
 }
+
+
+
+/* === 新增函数实现 === */
+
+/**
+ * Delete a file
+ * @param drv       pointer to a driver where this function belongs
+ * @param path      path of the file to delete
+ * @return          LV_FS_RES_OK or any error from lv_fs_res_t enum
+ */
+static lv_fs_res_t fs_remove(lv_fs_drv_t * drv, const char * path)
+{
+    LV_UNUSED(drv);
+    char *real_path = lv_mem_alloc(256);
+    if(real_path == NULL) return LV_FS_RES_OUT_OF_MEM;
+
+    // 补全盘符 "0:"
+    lv_snprintf(real_path, 256, "0:%s", path);
+
+    FRESULT res = f_unlink(real_path);
+    lv_mem_free(real_path);
+
+    if(res == FR_OK) return LV_FS_RES_OK;
+    else return LV_FS_RES_UNKNOWN;
+}
+
+/**
+ * Rename a file
+ * @param drv       pointer to a driver where this function belongs
+ * @param oldname   path to the file to rename
+ * @param newname   path with the new name
+ * @return          LV_FS_RES_OK or any error from 'fs_res_t'
+ */
+static lv_fs_res_t fs_rename(lv_fs_drv_t * drv, const char * oldname, const char * newname)
+{
+    LV_UNUSED(drv);
+
+    // 分配旧路径内存
+    char *real_old_path = lv_mem_alloc(256);
+    if(real_old_path == NULL) return LV_FS_RES_OUT_OF_MEM;
+
+    // 分配新路径内存
+    char *real_new_path = lv_mem_alloc(256);
+    if(real_new_path == NULL) {
+        lv_mem_free(real_old_path);
+        return LV_FS_RES_OUT_OF_MEM;
+    }
+
+    // 补全盘符
+    lv_snprintf(real_old_path, 256, "0:%s", oldname);
+    lv_snprintf(real_new_path, 256, "0:%s", newname);
+
+    FRESULT res = f_rename(real_old_path, real_new_path);
+
+    lv_mem_free(real_old_path);
+    lv_mem_free(real_new_path);
+
+    if(res == FR_OK) return LV_FS_RES_OK;
+    else return LV_FS_RES_UNKNOWN;
+}
+
 
 #else /*Enable this file at the top*/
 

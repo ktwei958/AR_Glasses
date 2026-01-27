@@ -83,6 +83,10 @@ typedef struct _lv_fs_drv_t {
     lv_fs_res_t (*dir_read_cb)(struct _lv_fs_drv_t * drv, void * rddir_p, char * fn);
     lv_fs_res_t (*dir_close_cb)(struct _lv_fs_drv_t * drv, void * rddir_p);
 
+    /* === 新增：文件删除与重命名回调 === */
+        lv_fs_res_t (*remove_cb)(struct _lv_fs_drv_t * drv, const char * path);
+        lv_fs_res_t (*rename_cb)(struct _lv_fs_drv_t * drv, const char * oldname, const char * newname);
+
 #if LV_USE_USER_DATA
     void * user_data; /**< Custom file user data*/
 #endif

@@ -259,7 +259,7 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h \
  ../Drivers/BSP/inc/GPS.h ../Core/Inc/delay.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h
+ ../Core/Inc/usart.h ../Drivers/BSP/inc/my_spi.h
 ../Core/Inc/spi.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -526,3 +526,4 @@ Core/Src/spi.o: ../Core/Src/spi.c ../Core/Inc/spi.h ../Core/Inc/main.h \
 ../Core/Inc/delay.h:
 ../Core/Inc/tim.h:
 ../Core/Inc/usart.h:
+../Drivers/BSP/inc/my_spi.h:

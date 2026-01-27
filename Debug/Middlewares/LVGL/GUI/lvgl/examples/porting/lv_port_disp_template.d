@@ -213,7 +213,7 @@ Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.o: \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/rlottie/../../../lvgl.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h \
- ../Drivers/BSP/inc/LCD.h ../Core/Inc/main.h \
+ ../Drivers/BSP/inc/LCD_TK024F3036.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -259,8 +259,9 @@ Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lvgl.h \
+ ../Drivers/BSP/inc/LCD.h \
  ../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port.h \
+ ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lvgl.h \
  ../Drivers/BSP/inc/GPS.h ../Core/Inc/delay.h ../Core/Inc/main.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port.h:
@@ -476,7 +477,7 @@ Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.o: \
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/rlottie/../../../lvgl.h:
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/lv_ffmpeg.h:
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/../../src/extra/libs/ffmpeg/../../../lvgl.h:
-../Drivers/BSP/inc/LCD.h:
+../Drivers/BSP/inc/LCD_TK024F3036.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -523,8 +524,9 @@ Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port_disp_template.o: \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
-../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lvgl.h:
+../Drivers/BSP/inc/LCD.h:
 ../Middlewares/LVGL/GUI/lvgl/examples/porting/lv_port.h:
+../Middlewares/LVGL/GUI/lvgl/examples/porting/../../lvgl.h:
 ../Drivers/BSP/inc/GPS.h:
 ../Core/Inc/delay.h:
 ../Core/Inc/main.h:

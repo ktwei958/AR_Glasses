@@ -21,7 +21,7 @@
 #include "spi.h"
 
 /* USER CODE BEGIN 0 */
-#include "LCD.h"
+#include "my_spi.h"
 /* USER CODE END 0 */
 
 SPI_HandleTypeDef hspi1;
@@ -45,7 +45,7 @@ void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -86,8 +86,8 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
 
     /* SPI1 DMA Init */
     /* SPI1_TX Init */
-    hdma_spi1_tx.Instance = DMA2_Stream2;
-    hdma_spi1_tx.Init.Channel = DMA_CHANNEL_2;
+    hdma_spi1_tx.Instance = DMA2_Stream5;
+    hdma_spi1_tx.Init.Channel = DMA_CHANNEL_3;
     hdma_spi1_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_spi1_tx.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_spi1_tx.Init.MemInc = DMA_MINC_ENABLE;
@@ -135,7 +135,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
 	if (hspi->Instance == SPI1) {
         LCD_DMA_TX_Callback(); // 调用LCD的DMA完成回调，设置标志
     }

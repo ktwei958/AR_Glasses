@@ -38,7 +38,7 @@ public:
         bool isInit;    //用于判断是否完成初始化
 
         PinCoordinate()          // C++98 合法
-            : index_now(0), pointCounts(200), isInit(false)
+            : index_now(0), pointCounts(3000), isInit(false)
         {}
     };
     PinCoordinate pinCoordinate;

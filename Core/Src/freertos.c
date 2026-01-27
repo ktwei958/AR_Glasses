@@ -32,6 +32,7 @@
 #include "gh_demo.h"
 #include "testPage.h"
 #include "APP.h"
+#include "kml_parse_v2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,7 +64,7 @@ uint8_t gps_data_change;
 osThreadId_t TaskMainHandle;
 const osThreadAttr_t TaskMain_attributes = {
   .name = "TaskMain",
-  .stack_size = 6144 * 4,
+  .stack_size = 4096 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GPS_Task */
@@ -77,7 +78,7 @@ const osThreadAttr_t GPS_Task_attributes = {
 osThreadId_t HR_TaskHandle;
 const osThreadAttr_t HR_Task_attributes = {
   .name = "HR_Task",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
@@ -163,10 +164,6 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartTaskMain */
 void StartTaskMain(void *argument)
 {
-	UBaseType_t uxHighWaterMark;
-
-	    // 2. 获取初始水位（此时刚进入任务）
-	uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
   /* USER CODE BEGIN StartTaskMain */
 	lv_init();
 	lv_port_init();
@@ -178,7 +175,13 @@ void StartTaskMain(void *argument)
 	 lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
 */
 //	lv_example_hr_display();
+//	lvgl_st7789_test_page_create();
+//	App_Init();
 
+	const char* kml_file_path = "0:/track/HK100.kml";
+	parse_kml_file(kml_file_path);
+	filter_kml_lines(FILE_LINE_NAME, FILE_LINE_FILTERED_NAME);
+	load_segment_to_global_buffer(FILE_LINE_NAME,2);
 	App_Init();
 	/* Infinite loop */
 	for (;;) {
@@ -193,7 +196,7 @@ void StartTaskMain(void *argument)
 			xSemaphoreGive(gps_mutex);
 		}
 */
-		uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
+
 		lv_timer_handler();
 		vTaskDelay(pdMS_TO_TICKS(5));
 	}

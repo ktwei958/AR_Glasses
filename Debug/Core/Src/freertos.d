@@ -272,7 +272,8 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Drivers/BSP/GH3220/Kernel_code/kernel/inc/gh_demo.h \
  ../Drivers/BSP/GH3220/Kernel_code/driver/inc/gh_drv.h \
  ../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt/gh_multi_sen_pro.h \
- ../Core/USER/APP/inc/testPage.h ../Core/USER/APP/inc/APP.h
+ ../Core/USER/APP/inc/testPage.h ../Core/USER/APP/inc/APP.h \
+ ../Core/USER/Utils/Track_Parse/inc/kml_parse_v2.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -556,3 +557,4 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Drivers/BSP/GH3220/Kernel_code/module/gh_soft_adt/gh_multi_sen_pro.h:
 ../Core/USER/APP/inc/testPage.h:
 ../Core/USER/APP/inc/APP.h:
+../Core/USER/Utils/Track_Parse/inc/kml_parse_v2.h:

@@ -8,16 +8,16 @@ D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32c
 ../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:15:14:float deg2rad(float)	1
 ../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:19:7:float Page::TemplateModel::distanceMeters(float, float, float, float)	1
 ../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:35:6:void Page::TemplateModel::KMLParser()	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:275:7:float Page::TemplateModel::CalcDistance(std::vector<RawCoordinates>&, int, int)	8
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:288:5:int Page::TemplateModel::CalcAscent(std::vector<RawCoordinates>&, int, int)	10
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:309:6:void Page::TemplateModel::UpdateData(std::vector<RawCoordinates>&, int, int)	10
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:330:5:int Page::TemplateModel::MatchNearestPoint(std::vector<RawCoordinates>&, double, double, int, int)	12
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:280:7:float Page::TemplateModel::CalcDistance(std::vector<RawCoordinates>&, int, int)	8
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:293:5:int Page::TemplateModel::CalcAscent(std::vector<RawCoordinates>&, int, int)	10
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:314:6:void Page::TemplateModel::UpdateData(std::vector<RawCoordinates>&, int, int)	10
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:335:5:int Page::TemplateModel::MatchNearestPoint(std::vector<RawCoordinates>&, double, double, int, int)	12
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:133:14:std::_Vector_base<RawCoordinates, std::allocator<RawCoordinates> >::_Vector_impl::~_Vector_impl()	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:315:7:std::_Vector_base<_Tp, _Alloc>::_Vector_base() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:531:7:std::vector<_Tp, _Alloc>::vector() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:434:17:static void TestCoordinateInit::add(float, float, float)	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:442:5:TestCoordinateInit::TestCoordinateInit()	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:490:6:void Page::TemplateModel::GetGPS_Info(GPS_Data*, int)	6
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:439:17:static void TestCoordinateInit::add(float, float, float)	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:447:5:TestCoordinateInit::TestCoordinateInit()	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:495:6:void Page::TemplateModel::GetGPS_Info(GPS_Data*, int)	6
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:1605:7:void std::vector<_Tp, _Alloc>::clear() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:992:7:std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::size() const [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:1126:7:std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](size_type) [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
@@ -101,8 +101,8 @@ D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32c
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_algobase.h:433:2:static _Up* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(_Tp*, _Tp*, _Up*) [with _Tp = RawCoordinates; _Up = RawCoordinates; bool _IsMove = true]	3
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_algobase.h:422:2:static void std::__copy_move<true, false, std::random_access_iterator_tag>::__assign_one(_Tp*, _Up*) [with _Tp = RawCoordinates; _Up = RawCoordinates]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\move.h:97:5:constexpr typename std::remove_reference<_Tp>::type&& std::move(_Tp&&) [with _Tp = RawCoordinates&]	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:573:1:void __static_initialization_and_destruction_0()	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:573:1:void __static_initialization_and_destruction_1()	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:578:1:void __static_initialization_and_destruction_0()	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:578:1:void __static_initialization_and_destruction_1()	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:733:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:573:1:cpp)	1
-../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:573:1:cpp)	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:578:1:cpp)	1
+../Core/USER/APP/Pages/Template/src/TemplateModel.cpp:578:1:cpp)	1

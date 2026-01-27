@@ -1,5 +1,9 @@
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\new:174:33:void* operator new(std::size_t, void*)	1
-../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:32:5:int kml_parse_coordinates(const char*, std::vector<RawCoordinates>&)	41
+../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:37:5:int kml_parse_coordinates(const char*, std::vector<RawCoordinates>&)	42
+../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:214:5:int kml_parse_to_file(const char*, const char*)	42
+../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:378:5:int count_kml_points(const char*)	9
+../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:421:5:int kml_filter_to_file(const char*, const char*)	42
+../Core/USER/Utils/Track_Parse/src/kml_parse.cpp:622:5:int load_points_from_file(const char*, std::vector<RawCoordinates>&, int)	6
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:1605:7:void std::vector<_Tp, _Alloc>::clear() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:483:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_use_relocate() [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
 D:\STM32\CUBEIDE\software\STM32CubeIDE_1.18.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\stl_vector.h:470:7:static constexpr bool std::vector<_Tp, _Alloc>::_S_nothrow_relocate(std::true_type) [with _Tp = RawCoordinates; _Alloc = std::allocator<RawCoordinates>]	1
